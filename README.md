@@ -40,7 +40,7 @@
     `DELETE /api/categories/{id}: Delete a category
 ## Running Tests
     Run the tests with the following command:
-     ```bash
+
     php artisan test
 
 
