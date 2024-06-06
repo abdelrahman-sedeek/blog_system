@@ -12,13 +12,12 @@
     php artisan key:generate
     npm install
 3. Configure the .env file:
-     ```bash
-        DB_CONNECTION=mysql
-        DB_HOST=127.0.0.1
-        DB_PORT=3306
-        DB_DATABASE=blog
-        DB_USERNAME=blog_goldady
-        DB_PASSWORD=secret
+            DB_CONNECTION=mysql
+            DB_HOST=127.0.0.1
+            DB_PORT=3306
+            DB_DATABASE=blog
+            DB_USERNAME=blog_goldady
+            DB_PASSWORD=secret
 4. Run migrations:
      ```bash
     php artisan migrate
@@ -41,7 +40,7 @@
     `DELETE /api/categories/{id}: Delete a category
 ## Running Tests
     Run the tests with the following command:
-    ```bash
+     ```bash
     php artisan test
 
 
