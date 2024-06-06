@@ -39,5 +39,9 @@
     `GET /api/categories/{id}: Fetch a single category
     `PUT /api/categories/{id}: Update a category
     `DELETE /api/categories/{id}: Delete a category
+## Running Tests
+    Run the tests with the following command:
+    ```bash
+    php artisan test
 
 
