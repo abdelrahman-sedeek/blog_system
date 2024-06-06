@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $posts =  $user->Posts()->get();
-        return response()->json(['posts' => $posts]);
+        $posts = Post::with('user')->get();
+        return response()->json($posts);
     }
 
     public function store(Request $request)
@@ -23,42 +23,36 @@ class PostController extends Controller
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        $post = new Post([
-            'title' => $request->title,
-            'content' => $request->content,
-            'user_id' => Auth::id(),
-            'category_id' => $request->category_id,
-        ]);
+        $post = $request->user()->posts()->create($request->all());
+        Log::info('Post created', ['post' => $post]);
 
-        $post->save();
-        return response()->json(['post' => $post], 201);
+        return response()->json($post, 201);
     }
 
-    public function show($id)
+    public function show(Post $post)
     {
-        $user = Auth::user();
-        $post = $user->posts()->findOrFail($id);
-        return response()->json(['post' => $post]);
+        return response()->json($post);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'title' => 'sometimes|string|max:255',
+            'body' => 'sometimes|string',
+            'category_id' => 'sometimes|exists:categories,id',
         ]);
 
-        $post = Post::findOrFail($id);
         $post->update($request->all());
+        Log::info('Post updated', ['post' => $post]);
 
-        return response()->json(['post' => $post]);
+        return response()->json($post);
     }
 
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = post::findOrFail($id);
         $post->delete();
+        Log::info('Post deleted', ['post' => $post]);
 
-        return response()->json(['message' => 'Post deleted successfully']);
+        return response()->json(null, 204);
     }
 }

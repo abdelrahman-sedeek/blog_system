@@ -43,12 +43,10 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->firstOrFail();
             $token = $user->createToken('api_token')->plainTextToken;
             $response = [
-                'message' => 'Login successful',
-                'data' => [
                     'user' => new loginResource($user),
                     'access_token' => $token,
                     'token_type' => 'Bearer'
-                ]
+               
             ];
             return response()->json($response,200);
 
