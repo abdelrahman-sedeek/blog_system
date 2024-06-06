@@ -9,6 +9,7 @@
 2. Install dependencies:
     ```bash
     composer install
+    php artisan key:generate
     npm install
 3. Configure the .env file:
      ```bash
@@ -19,9 +20,10 @@
         DB_USERNAME=blog_goldady
         DB_PASSWORD=secret
 4. Run migrations:
-
+     ```bash
     php artisan migrate
 5. Start the development server:
+    ```bash
     php artisan serve
 
 ## API Endpoints
