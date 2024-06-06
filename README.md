@@ -7,16 +7,17 @@
    git clone https://github.com/abdelrahman-sedeek/blog_system.git
   
 2. Install dependencies:
+    ```bash
     composer install
     npm install
 3. Configure the .env file:
-
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=blog
-    DB_USERNAME=blog_goldady
-    DB_PASSWORD=secret
+     ```bash
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=blog
+        DB_USERNAME=blog_goldady
+        DB_PASSWORD=secret
 4. Run migrations:
 
     php artisan migrate
